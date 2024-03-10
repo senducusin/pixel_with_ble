@@ -26,6 +26,6 @@ void rotaryHandler() {
     }
 
     position = new_position;
-    showLights(true, active_pixel, color);
+    showLights(true, active_pixel, active_color);
   }
 }

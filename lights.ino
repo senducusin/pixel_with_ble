@@ -1,9 +1,34 @@
 void setupPixels() {
   active_pixel = 0;
-  color = SELECTED_COLOR;
+  active_color = default_color;
   pixel_ring.clear();
   pixel_ring.setBrightness(30);
   pixel_ring.show();
+}
+
+void lightingModeSwitchHandler() {
+  setupPixels();
+
+  switch (active_light_mode) {
+    case CHASE:
+      active_light_mode = TRAIL;
+      break;
+
+    case TRAIL:
+      active_light_mode = FADE;
+      break;
+
+    case FADE:
+      active_light_mode = MANUAL;
+      break;
+
+    case MANUAL:
+      active_light_mode = CHASE;
+      break;
+  }
+
+  int mode = (int)(active_light_mode);
+  pixel_characteristic.writeValue(mode);
 }
 
 void lightingModeHandler() {
@@ -41,20 +66,19 @@ void colorFade() {
     fade_amount = -fade_amount;
   }
 
-  Serial.println(brightness);
   pixel_ring.setBrightness(brightness);
 
   for (int i = 0; i < pixel_ring.numPixels(); i++) {
-    showLights(false, i, color);
+    showLights(false, i, active_color);
   }
 }
 
 void colorChase(bool show_trail) {
-  showLights(!show_trail, active_pixel, color);
+  showLights(!show_trail, active_pixel, active_color);
   active_pixel++;
 
   if (active_pixel > pixel_ring.numPixels()) {
     active_pixel = 0;
-    color = (show_trail && color) == 0 ? SELECTED_COLOR : 0;
+    active_color = ((show_trail && active_color) == 0) ? default_color : 0;
   }
 }
