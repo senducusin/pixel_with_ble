@@ -26,6 +26,7 @@ void rotaryHandler() {
     }
 
     position = new_position;
+    rotary_position_characteristic.writeValue(position);
     showLights(true, active_pixel, active_color);
   }
 }

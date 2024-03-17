@@ -9,6 +9,10 @@ void setupPixels() {
 void lightingModeSwitchHandler() {
   setupPixels();
 
+  if (active_light_mode == MANUAL) {
+    showLights(true, active_pixel, active_color);
+  }
+
   switch (active_light_mode) {
     case CHASE:
       active_light_mode = TRAIL;
@@ -28,7 +32,7 @@ void lightingModeSwitchHandler() {
   }
 
   int mode = (int)(active_light_mode);
-  pixel_characteristic.writeValue(mode);
+  mode_characteristic.writeValue(mode);
 }
 
 void lightingModeHandler() {
