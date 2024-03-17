@@ -47,3 +47,35 @@ void setMode(int modeIndex) {
       break;
   }
 }
+
+String createNotifyValue(bool value) {
+  JsonDocument doc;
+  doc[String("value")] = value;
+
+  String output; 
+  serializeJson(doc, output);
+
+  return output;
+}
+
+String createNotifyValue(int value) {
+  JsonDocument doc;
+  doc[String("value")] = value;
+
+  String output; 
+  serializeJson(doc, output);
+  
+  return output;
+}
+
+String createNotifyValue(String value) {
+  JsonDocument doc;
+  doc[String("value")] = value;
+
+  String output; 
+  serializeJson(doc, output);
+  
+  return output;
+}
+
+

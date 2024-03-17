@@ -32,7 +32,8 @@ void lightingModeSwitchHandler() {
   }
 
   int mode = (int)(active_light_mode);
-  mode_characteristic.writeValue(mode);
+  String json = createNotifyValue(mode);
+  mode_characteristic.writeValue(json);
 }
 
 void lightingModeHandler() {

@@ -21,7 +21,8 @@ void setupOutputCharacteristics() {
 
   // initial values
   // color_characteristic initial value is added in setupInitialColor()
-  mode_characteristic.writeValue(0);
+  String json = createNotifyValue(0);
+  mode_characteristic.writeValue(json);
 }
 
 void setupInputCharacteristics() {
@@ -35,7 +36,7 @@ void setupInputCharacteristics() {
 
   // initial values
   rotary_position_characteristic.writeValue(0);
-  button_center_characteristic.writeValue(0);
+  button_center_characteristic.writeValue("init val 0");
 }
 
 void onColorCharacteristicsUpdate(BLEDevice central, BLECharacteristic characteristic) {
@@ -52,9 +53,14 @@ void onColorCharacteristicsUpdate(BLEDevice central, BLECharacteristic character
 void onModeCharacteristicsUpdate(BLEDevice central, BLECharacteristic characteristic) {
   setupPixels();
 
-  if (mode_characteristic.value() == 3) {
+  JsonDocument doc;
+  deserializeJson(doc, mode_characteristic.value());
+  
+  int mode = doc[String("value")];
+
+  if (mode == 3) {
     showLights(true, active_pixel, active_color);
   }
 
-  setMode(mode_characteristic.value());
+  setMode(mode);
 }
