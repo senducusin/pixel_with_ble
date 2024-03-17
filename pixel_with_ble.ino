@@ -37,13 +37,13 @@ pixelMode active_light_mode;
 
 // BLE
 BLEService input_service("50cb2718-83f9-4efc-b35b-2544bb24d8b6");
-BLEByteCharacteristic rotary_position_characteristic("961c5b3c-4e94-4cee-84b3-e84a5d036950", BLERead);
-BLEByteCharacteristic button_center_characteristic("28e0c7b8-95e4-4c69-939e-0a7bf68606c5", BLERead);
+BLEByteCharacteristic rotary_position_characteristic("961c5b3c-4e94-4cee-84b3-e84a5d036950", BLERead | BLENotify);
+BLEByteCharacteristic button_center_characteristic("28e0c7b8-95e4-4c69-939e-0a7bf68606c5", BLERead | BLENotify);
 // add some sensors?
 
 BLEService output_service("cd457cc4-f310-4d7b-addd-3291067b12ec");
 BLEStringCharacteristic color_characteristic("d0df504e-b877-427c-b014-f22ddefd387a", BLERead | BLEWrite, 20);
-BLEByteCharacteristic mode_characteristic("595f7ddd-8e72-4989-a553-bdd922c5efff", BLERead | BLEWrite);
+BLEByteCharacteristic mode_characteristic("595f7ddd-8e72-4989-a553-bdd922c5efff", BLERead | BLEWrite | BLENotify);
 // add brightness control
 
 // Setup
