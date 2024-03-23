@@ -35,8 +35,8 @@ void setupInputCharacteristics() {
   BLE.addService(input_service);
 
   // initial values
-  rotary_position_characteristic.writeValue(0);
-  button_center_characteristic.writeValue("init val 0");
+  String rotary_char_value = createNotifyValue(0);
+  rotary_position_characteristic.writeValue(rotary_char_value);
 }
 
 void onColorCharacteristicsUpdate(BLEDevice central, BLECharacteristic characteristic) {
