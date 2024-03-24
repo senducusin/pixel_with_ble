@@ -37,14 +37,14 @@ enum pixelMode { CHASE,
 pixelMode active_light_mode;
 
 // BLE
-BLEService input_service("50cb2718-83f9-4efc-b35b-2544bb24d8b6");
-BLEStringCharacteristic rotary_position_characteristic("961c5b3c-4e94-4cee-84b3-e84a5d036950", BLERead | BLENotify, 25);
-BLEStringCharacteristic button_center_characteristic("28e0c7b8-95e4-4c69-939e-0a7bf68606c5", BLERead | BLENotify, 25);
+BLEService input_service("50CB2718-83F9-4EFC-B35B-2544BB24D8B6");
+BLEStringCharacteristic rotary_position_characteristic("961C5B3C-4E94-4CEE-84B3-E84A5D036950", BLERead | BLENotify, 25);
+BLEStringCharacteristic button_center_characteristic("28E0C7B8-95E4-4C69-939E-0A7BF68606C5", BLERead | BLENotify, 25);
 // add some sensors?
 
-BLEService output_service("cd457cc4-f310-4d7b-addd-3291067b12ec");
-BLEStringCharacteristic color_characteristic("d0df504e-b877-427c-b014-f22ddefd387a", BLERead | BLEWrite, 25);
-BLEStringCharacteristic mode_characteristic("f4f7790a-6c50-40c6-9a75-37a0f78a6fb3", BLERead | BLEWrite | BLENotify, 25);
+BLEService output_service("CD457CC4-F310-4D7B-ADDD-3291067B12EC");
+BLEStringCharacteristic color_characteristic("D0DF504E-B877-427C-B014-F22DDEFD387A", BLERead | BLEWrite, 25);
+BLEStringCharacteristic mode_characteristic("F4F7790A-6C50-40C6-9A75-37A0F78A6FB3", BLERead | BLEWrite | BLENotify, 25);
 // add brightness control
 
 // Setup
@@ -70,6 +70,7 @@ void setup() {
   // to remove
   active_light_mode = MANUAL;
   setupInitialColor();
+  
 }
 
 // Main Loop

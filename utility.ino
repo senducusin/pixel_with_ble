@@ -21,8 +21,8 @@ void setupInitialColor() {
   default_color = pixel_ring.Color(r, g, b);
   active_color = default_color;
 
-  String color_string = String(r) + "," + String(g) + "," + String(b);
-  color_characteristic.writeValue(color_string);
+  String color_value = createColorValue(r, g, b);
+  color_characteristic.writeValue(color_value);
 }
 
 void setMode(int modeIndex) {
@@ -46,6 +46,18 @@ void setMode(int modeIndex) {
     default:
       break;
   }
+}
+
+String createColorValue(int r, int g, int b) {
+  JsonDocument doc;
+  doc[String("r")] = r;
+  doc[String("g")] = g;
+  doc[String("b")] = b;
+
+  String output;
+  serializeJson(doc, output);
+
+  return output;
 }
 
 String createNotifyValue(bool value) {
